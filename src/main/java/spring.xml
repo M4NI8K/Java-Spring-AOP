@@ -1,0 +1,41 @@
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+	
+<!-- THIS WHAT TELLS TO LOOK FOR ASPECTS  -->	
+ 	
+	
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>  
+	
+
+	<bean name="triangle"  class="info.michalak.aop.model.Triangle">
+		<property name="name" value="Triangle name"></property>
+	</bean>
+	
+	<bean name="circle"  class="info.michalak.aop.model.Circle">
+		<property name="name" value="Circle name"></property>
+	</bean>
+	
+
+	<bean name="shapeServices"  class="info.michalak.aop.services.ShapeServices"  >
+		<property name="triangle" ref="triangle"></property>
+		<property name="circle"  ref="circle"></property>
+	</bean>
+
+<!-- THIS WHAT INCLUDES ASPECTS  autowire="byName" -->
+
+
+	<bean name="loggingAspect" class="info.michalak.aop.aspect.LoggingAspect" > </bean> 
+
+
+</beans>
